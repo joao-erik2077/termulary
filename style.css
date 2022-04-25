@@ -1,0 +1,68 @@
+:root {
+    --red: #BC4B51;
+    --black: #151515;
+    --white: #EDF0DA;
+    --beige: #F0DFAD;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--beige);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: var(--black);
+}
+
+main {
+    background-color: var(--red);
+    height: 34rem;
+    width: 27rem;
+    border-radius: 5%;
+}
+
+.title {
+    color: var(--beige);
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.keyboard {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.key {
+    margin: 0.1rem;
+    cursor: pointer;
+    height: 2.2rem;
+    width: 2.2rem;
+    background-color: var(--beige);
+    box-shadow: 0 0 1rem var(--black);
+    border-radius: 10%;
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.key-word {
+    margin: 0.1rem;
+    cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--beige);
+    box-shadow: 0 0 1rem var(--black);
+    border-radius: 10%;
+    font-size: 3rem;
+    text-align: center;
+}
+
+
+.words {
+    display: flex;
+    justify-content: center;
+}
