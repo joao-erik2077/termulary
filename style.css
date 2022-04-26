@@ -22,6 +22,7 @@ main {
     height: 34rem;
     width: 27rem;
     border-radius: 5%;
+    box-shadow: 0 0 1rem var(--black);
 }
 
 .title {
@@ -47,6 +48,26 @@ main {
     border-radius: 10%;
     font-size: 2.2rem;
     text-align: center;
+}
+
+.key-enter {
+    font-size: 1.5rem;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #adff2f;
+}
+
+.key-delete {
+    font-size: 1.5rem;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff2f2f;
 }
 
 .key-word {
