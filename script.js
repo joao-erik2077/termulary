@@ -6,23 +6,26 @@ let columnKeys = [];
 let actualColumn = 0;
 let actualKey = 0;
 let actualWord = '';
+let gameRunning = true;
 initializeColumns(6);
 getColumnKeys();
 
 const wordWrite = (key) => {
-    if (key === 'ENTER' && actualKey === 5) {
-        checkWord();
-    } else {
-        if (key !== 'BACKSPACE') {
-            if (actualKey < 5 && alphabet.includes(key)) {
-                actualWord += key;
-                document.getElementById(columnKeys[actualKey].id).innerText = key;
-                actualKey++;
+    if (gameRunning) {
+        if (key === 'ENTER' && actualKey === 5) {
+            checkWord();
+        } else {
+            if (key !== 'BACKSPACE') {
+                if (actualKey < 5 && alphabet.includes(key)) {
+                    actualWord += key;
+                    document.getElementById(columnKeys[actualKey].id).innerText = key;
+                    actualKey++;
+                }
+            } else if (actualKey > 0) {
+                actualWord = actualWord.substring(0, actualWord.length - 1);
+                actualKey--;
+                document.getElementById(columnKeys[actualKey].id).innerText = '';
             }
-        } else if (actualKey > 0) {
-            actualWord = actualWord.substring(0, actualWord.length - 1);
-            actualKey--;
-            document.getElementById(columnKeys[actualKey].id).innerText = '';
         }
     }
 }
@@ -40,13 +43,40 @@ function initializeColumns(totalColumns) {
 
 function checkWord() {
     if (word === actualWord) {
-        alert('acertou!!');
+        checkWordKey();
+        disableOthersColumns();
+        gameRunning = false;
     } else {
-        alert('errou');
+        checkWordKey();
         actualWord = '';
         actualColumn++;
         actualKey = 0;
         getColumnKeys();
+    }
+}
+
+function disableOthersColumns() {
+    for (let i = actualColumn; i < 6; i++) {
+        actualColumn++;
+        getColumnKeys();
+        columnKeys.forEach((i) => {
+            i.style.backgroundColor = '#c2b691';
+        });
+    }
+}
+
+function checkWordKey() {
+    for (let i = 0; i < word.length; i++) {
+        for (let j = 0; j < word.length; j++) {
+            if (word[i] === actualWord[j]) {
+                columnKeys[j].style.backgroundColor = '#d5eb34';
+            }
+        }
+    }
+    for (let i = 0; i < word.length; i++) {
+        if (word[i] === actualWord[i]) {
+            columnKeys[i].style.backgroundColor = '#13d63e';
+        }
     }
 }
 
