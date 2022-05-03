@@ -1,12 +1,13 @@
-const wordList = ['APPLE', 'FRUIT', 'GUESS', 'SHORT', 'TODAY']
-const word = wordList[getRandomWord()];
-const alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+let wordList;
+let word;
+const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 const columns = [];
 let columnKeys = [];
 let actualColumn = 0;
 let actualKey = 0;
 let actualWord = '';
 let gameRunning = true;
+getWordsFromApi();
 initializeColumns(6);
 getColumnKeys();
 
@@ -33,6 +34,15 @@ const wordWrite = (key) => {
 window.onkeyup = (event) => {
     const key = event.key.toUpperCase();
     wordWrite(key);
+}
+
+async function getWordsFromApi() {
+    const url = 'https://api.datamuse.com/words?max=1000&sp=?????';
+
+    let response = await fetch(url);
+    let data = await response.json();
+    wordList = data;
+    word = wordList[getRandomWord()].word.toUpperCase();
 }
 
 function initializeColumns(totalColumns) {
