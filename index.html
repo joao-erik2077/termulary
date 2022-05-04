@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Termulary</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <main>
@@ -85,6 +87,21 @@
         </div>
     </main>
 
+    <div id="black-curtain"></div>
+    <div id="win">
+        <div>
+            <div style="text-align: center;">
+                <h1 style="color: var(--beige);">YOU WON!</h1>
+                <h2 style="color: var(--dark);">THE WORD WAS <span id="word"></span></h2>
+            </div>
+            <div class="buttons">
+                <a class="retry button" id="retry-button">RETRY</a>
+                <a class="close button" id="close-button">CLOSE</a>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

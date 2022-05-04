@@ -11,6 +11,22 @@ getWordsFromApi();
 initializeColumns(6);
 getColumnKeys();
 
+document.getElementById('retry-button').addEventListener('click', () => {
+    columnKeys = [];
+    actualColumn = 0;
+    actualKey = 0;
+    actualWord = '';
+    gameRunning = true;
+    getWordsFromApi();
+    initializeColumns(6);
+    getColumnKeys();
+    closeWin();
+});
+
+document.getElementById('close-button').addEventListener('click', () => {
+    closeWin();
+});
+
 const wordWrite = (key) => {
     if (gameRunning) {
         if (key === 'ENTER' && actualKey === 5) {
@@ -43,6 +59,7 @@ async function getWordsFromApi() {
     let data = await response.json();
     wordList = data;
     word = wordList[getRandomWord()].word.toUpperCase();
+    document.getElementById('word').innerText = word;
 
     if (word.includes(' ')) getWordsFromApi();
 }
@@ -50,11 +67,18 @@ async function getWordsFromApi() {
 function initializeColumns(totalColumns) {
     for (let i = 0; i < totalColumns; i++) {
         columns[i] = document.getElementById(`column-${i+1}`);
+
+        for (let j of document.getElementById(`column-${i+1}`).children) {
+            j.innerText = '';
+            j.style.backgroundColor = 'var(--beige)';
+        }
     }
+
 }
 
 function checkWord() {
     if (word === actualWord) {
+        win();
         checkWordKey();
         disableOthersColumns();
         gameRunning = false;
@@ -101,4 +125,20 @@ function getColumnKeys() {
 
 function getRandomWord() {
     return Math.floor(Math.random() * wordList.length);
+}
+
+function win() {
+    const curtain = document.getElementById('black-curtain');
+    const winDiv = document.getElementById('win');
+
+    curtain.style.display = 'initial';
+    winDiv.style.display = 'flex';
+}
+
+function closeWin() {
+    const curtain = document.getElementById('black-curtain');
+    const winDiv = document.getElementById('win');
+
+    curtain.style.display = 'none';
+    winDiv.style.display = 'none';
 }
