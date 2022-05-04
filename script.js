@@ -43,6 +43,8 @@ async function getWordsFromApi() {
     let data = await response.json();
     wordList = data;
     word = wordList[getRandomWord()].word.toUpperCase();
+
+    if (word.includes(' ')) getWordsFromApi();
 }
 
 function initializeColumns(totalColumns) {
